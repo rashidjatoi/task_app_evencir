@@ -56,7 +56,7 @@ flutter:
     - assets/icons/support.svg
     
     - assets/images/
-    - assets/images/place_holder.png
+    - assets/images/phone.png
     - assets/images/splash_bg.png
     - assets/images/thumbnail.jpg
 

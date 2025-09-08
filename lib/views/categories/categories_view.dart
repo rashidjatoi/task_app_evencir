@@ -119,28 +119,35 @@ class CategoriesView extends StatelessWidget {
         controller.selectedCategoryName = category.name;
         Get.toNamed(kCategoryProducts);
       },
-      child: Stack(
-        children: [
-          Positioned.fill(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.asset(AppImages.categoryImage, fit: BoxFit.cover),
-            ),
-          ),
-          Positioned(
-            bottom: 25.h,
-            left: 15.w,
-            child: Text(
-              category.name,
-              style: TextStyle(
-                fontSize: 12.sp,
-                fontWeight: 6.weight,
-                color: AppColors.whiteColor,
-              ),
-            ),
-          ),
-        ],
+     child: Stack(
+  children: [
+    // Positioned.fill(
+    //   child: ClipRRect(
+    //     borderRadius: BorderRadius.circular(12),
+    //     child: Container(
+    //       decoration: BoxDecoration(
+    //         color: AppColors.primaryColor.withValues(alpha: 0.2), // Background color
+    //         borderRadius: BorderRadius.circular(12),
+    //       ),
+    //     ),
+    //   ),
+    // ),
+    Positioned.fill( child: ClipRRect( borderRadius: BorderRadius.circular(12), child: Image.asset(AppImages.categoryImagek, fit: BoxFit.cover), ), ),
+    Positioned(
+      bottom: 25.h,
+      left: 15.w,
+      child: Text(
+        category.name,
+        style: TextStyle(
+          fontSize: 12.sp,
+          fontWeight: 6.weight,
+          color: AppColors.whiteColor,
+        ),
       ),
+    ),
+  ],
+),
+
     );
   }
 }
