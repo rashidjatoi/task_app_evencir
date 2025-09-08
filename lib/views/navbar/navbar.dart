@@ -7,18 +7,24 @@ import '../profile/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class BottomNavBar extends StatelessWidget {
-  BottomNavBar({super.key});
+class BottomNavBar extends StatefulWidget {
+  const BottomNavBar({super.key});
+
+  @override
+  State<BottomNavBar> createState() => _BottomNavBarState();
+}
+
+class _BottomNavBarState extends State<BottomNavBar> {
+  final controller = Get.put(BottomBarController(), permanent: true);
+
   final _tabs = [
     ProductsView(),
     CategoriesView(),
     FavoriteProducts(),
-    ProfileView()
+    ProfileView(),
   ];
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(BottomBarController(), permanent: true);
-
     return Padding(
       padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
       child: Scaffold(
