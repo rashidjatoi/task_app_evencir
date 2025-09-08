@@ -1,80 +1,84 @@
+import '../../core/utils/colors/app_colors.dart';
+import '../../core/utils/images/app_images.dart';
+import '../../core/utils/text_constants/text_constants.dart';
+import '../../core/utils/utils.dart';
+import '../../controllers/splash_controller.dart';
 import 'package:flutter/material.dart';
-
-import '../../utils/values/text_constants.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class SplashView extends StatelessWidget {
   const SplashView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Get.find<SplashController>();
     return Scaffold(
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/splash.png'),
-                fit: BoxFit.cover,
-                colorFilter: ColorFilter.mode(Colors.black54, BlendMode.darken),
-              ),
-            ),
-          ),
-
-          // Text overlay
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(height: 60),
-
-              // Title
-              const Text(
-                "My Store",
-                style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-
-              const Spacer(),
-
-              // Welcome text
-              _splashDescription(),
-
-              SizedBox(height: 100),
-            ],
-          ),
-        ],
+      body: Container(
+        decoration: _buildBackground(),
+        child: _buildContent(),
       ),
     );
   }
 
-  Column _splashDescription() {
+  // Background decoration
+  BoxDecoration _buildBackground() {
+    return BoxDecoration(
+      image: DecorationImage(
+        image: AssetImage(AppImages.splashBg),
+        fit: BoxFit.cover,
+      ),
+    );
+  }
+
+  // Main content column
+  Widget _buildContent() {
     return Column(
-              children: [
-                Text(
-                  kSplashTitle,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    color: Colors.white,
-                    height: 1.5,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Text(
-                  kSplashDescription,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      color: Colors.white,
-                      height: 1.5,
-                    ),
-                  ),
-                ),
-              ],
-            );
+      children: [
+        60.ph,
+        _buildTitle(),
+        Spacer(),
+        _buildWelcomeText(),
+        10.ph,
+        _buildDescription(),
+        130.ph,
+      ],
+    ).paddingSymmetric(horizontal: 40);
+  }
+
+  // App title
+  Widget _buildTitle() {
+    return Text(
+      kSplashLogoText,
+      style: TextStyle(
+        fontSize: 50.sp,
+        fontWeight: 4.weight,
+      ),
+    );
+  }
+
+  // Welcome message
+  Widget _buildWelcomeText() {
+    return Text(
+      kSplashTitleText,
+      style: TextStyle(
+        fontSize: 14.sp,
+        fontWeight: 6.weight,
+        color: AppColors.whiteColor,
+      ),
+    );
+  }
+
+  // Description text
+  Widget _buildDescription() {
+    return Text(
+      ksplashDescriptionText,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontSize: 12.sp,
+        fontWeight: 4.weight,
+        color: AppColors.whiteColor,
+      ),
+    );
   }
 }
