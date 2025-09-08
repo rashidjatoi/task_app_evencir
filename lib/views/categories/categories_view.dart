@@ -1,6 +1,5 @@
 import '../../controllers/categories_controller.dart';
 import '../../core/utils/colors/app_colors.dart';
-import '../../core/utils/images/app_images.dart';
 import '../../core/utils/route/route_constants.dart';
 import '../../core/utils/utils.dart';
 import '/core/common/custom_textfield.dart';
@@ -112,42 +111,68 @@ class CategoriesView extends StatelessWidget {
     );
   }
 
-  Widget _buildCategoryItem(CategoriesController controller, dynamic category) {
-    return InkWell(
-      onTap: () async {
-        await controller.fetchCategoryProducts(category.url);
-        controller.selectedCategoryName = category.name;
-        Get.toNamed(kCategoryProducts);
-      },
-     child: Stack(
-  children: [
-    // Positioned.fill(
-    //   child: ClipRRect(
-    //     borderRadius: BorderRadius.circular(12),
-    //     child: Container(
-    //       decoration: BoxDecoration(
-    //         color: AppColors.primaryColor.withValues(alpha: 0.2), // Background color
-    //         borderRadius: BorderRadius.circular(12),
-    //       ),
-    //     ),
-    //   ),
-    // ),
-    Positioned.fill( child: ClipRRect( borderRadius: BorderRadius.circular(12), child: Image.asset(AppImages.categoryImagek, fit: BoxFit.cover), ), ),
-    Positioned(
-      bottom: 25.h,
-      left: 15.w,
-      child: Text(
-        category.name,
-        style: TextStyle(
-          fontSize: 12.sp,
-          fontWeight: 6.weight,
-          color: AppColors.whiteColor,
+Widget _buildCategoryItem(CategoriesController controller, dynamic category) {
+  return InkWell(
+    onTap: () async {
+      await controller.fetchCategoryProducts(category.url);
+      controller.selectedCategoryName = category.name;
+      Get.toNamed(kCategoryProducts);
+    },
+    child: Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        gradient: LinearGradient(
+          colors: [
+            AppColors.primaryColor.withValues(alpha: 0.8),
+            AppColors.primaryColor.withValues(alpha: 0.5),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
         ),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.primaryColor.withValues(alpha: 0.3),
+            blurRadius: 8,
+            offset: Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.black.withValues( alpha: 0.1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+            ),
+          ),
+          // Category name text
+          Positioned(
+            bottom: 15.h,
+            left: 15.w,
+            child: Text(
+              category.name,
+              style: TextStyle(
+                fontSize: 14.sp,
+                fontWeight: 6.weight,
+                color: AppColors.whiteColor,
+                shadows: [
+                  Shadow(
+                    color: Colors.black.withValues( alpha: 0.5),
+                    offset: Offset(1, 1),
+                    blurRadius: 2,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     ),
-  ],
-),
-
-    );
-  }
+  );
+}
 }
