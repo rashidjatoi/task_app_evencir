@@ -1,0 +1,2 @@
+const String kSplashTitle =  "Välkommen\n";
+const String kSplashDescription ="Hos oss kan du boka tid hos nästan alla Sveriges salonger och mottagningar.Boka frisör, massage, skönhetsbehandlingar, friskvård och mycket mer.";
